@@ -18,8 +18,7 @@ class KMeans(object):
             cnt += 1
             last_center = cluster_center.copy()
             for idx, item in enumerate(x):
-                min_idx = np.argmin([self.calc_dis(item, y) for y in cluster_center])
-                cluster[idx] = min_idx
+                cluster[idx] = np.argmin([self.calc_dis(item, y) for y in cluster_center])
             for idx in range(self.num_cluster):
                 cluster_center[idx] = np.mean(x[cluster == idx], axis=0)
         print(f"INFO: epoch = {cnt}, distance change = {max([self.calc_dis(x, y) for x, y in zip(cluster_center, last_center)]):9.8f} [FINAL]")
@@ -30,8 +29,7 @@ class KMeans(object):
             raise Exception("Please fit model first")
         cluster = np.zeros(x.shape[0], dtype=int)
         for idx, item in enumerate(x):
-            min_idx = np.argmin([self.calc_dis(item, y) for y in self.centers])
-            cluster[idx] = min_idx
+            cluster[idx] = np.argmin([self.calc_dis(item, y) for y in self.centers])
         return cluster
 
     @staticmethod
